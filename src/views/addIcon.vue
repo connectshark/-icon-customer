@@ -18,16 +18,18 @@
         <span class="material-icons icon">{{icon}}</span>
       </div>
     </section>
-    <router-link to="/">back</router-link>
+    <a @click="clearStage">back</a>
   </div>
 </template>
 
 <script>
 import { computed } from 'vue'
 import { useStore } from 'vuex'
+import { useRouter } from 'vue-router'
 export default {
   setup () {
     const store = useStore()
+    const router = useRouter()
 
     const icons = computed(() => store.state.icons)
     store.commit('setIcon', icons.value[0])
@@ -43,13 +45,18 @@ export default {
     }
     const colorIndex = computed(() => store.getters.getColorByName)
     
+    const clearStage = () => {
+      store.commit('resetBtn')
+      router.push('/')
+    }
     return {
       icons,
       setIcon,
       colors,
       iconIndex,
       colorIndex,
-      setColor
+      setColor,
+      clearStage
     }
   }
 }

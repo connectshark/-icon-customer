@@ -3,7 +3,7 @@ import LS from '../lib/ls'
 
 const store = createStore({
   state: {
-    colors: ['#fce8e6', '#e8f0fe', '#e6f4ea', '#fef7e0'],
+    colors: ['#5503B0', '#e8f0fe', '#e6f4ea', '#fef7e0'],
     icons: ['language', 'help_outline', 'face'],
     iconList: [],
     selectIcon: 'add_circle_outline',
@@ -26,6 +26,10 @@ const store = createStore({
         name: iconTitle
       })
       LS.save('iconList', state.iconList)
+    },
+    resetBtn (state) {
+      state.selectIcon = 'add_circle_outline',
+      state.selectColor = 'transparent'
     }
   },
   getters: {
